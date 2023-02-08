@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits } from "discord.js";
-import { TOKEN, VOICE_CHANNEL_ID, TEXT_TEST_CHANNEL_ID } from "./utils/constants.js";
+import { TOKEN, VOICE_CHANNEL_ID, TEXT_TEST_CHANNEL_ID } from "./constants.js";
 
 const {
     Guilds,
