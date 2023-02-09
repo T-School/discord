@@ -51,5 +51,10 @@ client.on("voiceStateUpdate", (oldState, newState) => {
     return;
 });
 
+let bot_token = TOKEN;
+// コマンドライン引数が指定されていれば、引数をトークンとして使用
+if (process.argv[2]) {
+    bot_token = process.argv[2];
+}
 
-client.login(TOKEN);
+client.login(bot_token);
