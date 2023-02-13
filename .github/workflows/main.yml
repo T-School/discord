@@ -1,11 +1,12 @@
 name: discord_voice_notification
-on:
-  schedule:
-    # 定期実行する時間
-    - cron: "15 * * * *"
-
+on: workflow_dispatch
+# on:
+#   schedule:
+# 定期実行する時間
+# - cron: "15 * * * *"
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
