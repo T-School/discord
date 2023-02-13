@@ -17,10 +17,24 @@ Discordの[Applications](https://discord.com/developers/applications)ページ�
 遷移先の画面`USERNAME`の下の`TOKEN`を`Copy`して控えておく。
 ![TOKEN](/img/create01.png)
 
-### Bot Permissions
+### Botの設定
+
+#### Privileged Gateway Intents
+
+以下をONにする。
+
+- [x] PRESENCE INTENT
+- [x] SERVER MEMBERS INTENT
+- [x] MESSAGE CONTENT INTENT
+
+#### Bot Permissions
 
 - [x] Send Messages
 
-### 他ユーザーをTesterとして招待
+#### 他ユーザーをTesterとして招待
 
 画面左側 [**🙋 App Testers**]タブより、開発に関わる別のユーザーを`INVITE`する。
+
+## ローカル環境で稼働させるには
+
+`.env`に、稼働させるBotトークン・通知させるチャンネルID・監視するボイスチャンネルIDをそれぞれ記載する。
