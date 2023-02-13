@@ -1,0 +1,13 @@
+name: discord_voice_notification
+on:
+  schedule:
+    # 定期実行する時間
+    - cron: "15 * * * *"
+
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm install
+      - run: node voice_notification/voiceMemberNotification.js
