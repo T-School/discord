@@ -31,6 +31,18 @@ Discordの[Applications](https://discord.com/developers/applications)ページ�
 
 - [x] Send Messages
 
+### OAuth2タブ
+
+#### URL Generator
+
+`scopes`で以下をチェック。
+
+- [x] bot
+
+GENERATED URLをブラウザで開き、開いた画面でBotを追加したいDiscordサーバを選択する。
+「認証しました」と表示されたらBotの追加は完了。
+![certificated](/img/create02.png)
+
 #### 他ユーザーをTesterとして招待
 
 画面左側 [**🙋 App Testers**]タブより、開発に関わる別のユーザーを`INVITE`する。
