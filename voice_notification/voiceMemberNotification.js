@@ -40,8 +40,8 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 
             // メッセージ生成/送信
             members.unshift(`ボイス参加メンバー: ${members.length}人\n`);
-            const text = members.join("\n")
-            textRoom.send(`\`\`\`${text}\`\`\``)
+            const text = members.join("\n");
+            textRoom.send(`\`\`\`${text}\`\`\``);
         }
         if (oldState.channelId != null && newState.channelId === null) {
             // disconnectしたときに発火
@@ -49,7 +49,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
         if (oldState.channelId === newState.channelId) {
             // ミュートなどの動作を行ったときに発火
         }
-    };
+    }
     return;
 });
 
