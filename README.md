@@ -50,3 +50,7 @@ GENERATED URLをブラウザで開き、開いた画面でBotを追加したいD
 ## ローカル環境で稼働させるには
 
 `.env`に、稼働させるBotトークン・通知させるチャンネルID・監視するボイスチャンネルIDをそれぞれ記載する。
+
+## デプロイ
+
+[【GitHub Actions】.envファイルを使用する](https://zenn.dev/big_tanukiudon/articles/fc1a2ff562ce3d)
