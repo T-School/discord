@@ -1,10 +1,9 @@
-name: discord_voice_notification
-# 手動での実行
-# on: workflow_dispatch
+name: voice_notification
 on:
   schedule:
-  # 毎日0時、6時、12時、18時に定期実行
-  - cron: '* 0,6,12,18 * * *'
+    # 毎日0時、6時、12時、18時に定期実行
+    - cron: "* 0,6,12,18 * * *"
+  # 手動での実行
   workflow_dispatch:
 jobs:
   build:
@@ -19,4 +18,5 @@ jobs:
           echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - run: npm install
-      - run: node src/voiceMemberNotification.js
+      - name: Start Watching Voice Channel
+        run: node src/voiceMemberNotification.js
