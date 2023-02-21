@@ -3,8 +3,8 @@ name: discord_voice_notification
 # on: workflow_dispatch
 on:
   schedule:
-# 毎日0時、6時、12時、18時に定期実行
-- cron: "* 0,6,12,18 * * *"
+  # 毎日0時、6時、12時、18時に定期実行
+  - cron: "* 0,6,12,18 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
