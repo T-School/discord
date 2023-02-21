@@ -1,10 +1,11 @@
 name: discord_voice_notification
 # 手動での実行
 # on: workflow_dispatch
-on: [schedule, workflow_dispatch]
-  # schedule:
+on:
+  schedule:
   # 毎日0時、6時、12時、18時に定期実行
   - cron: "* 0,6,12,18 * * *"
+  workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
