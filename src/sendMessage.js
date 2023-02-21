@@ -16,17 +16,20 @@ const client = new Client({
     ]
 });
 
-client.on("ready", () => {
+client.once("ready", () => {
     // メッセージ送信を行うチャンネル取得
     const textRoom = client.channels.cache.get(env.MESSAGE_CHANNEL_ID);
-    sendMessage(textRoom, process.argv[3] ?? env.SEND_MESSAGE);
+    sendMessage(textRoom, process.argv[2] ?? env.SEND_MESSAGE);
+    setTimeout(() => {
+        process.exit();
+    }, 0);
     return;
 });
 
 let bot_token = env.TOKEN;
 // コマンドライン引数が指定されていれば、引数をトークンとして使用
-if (process.argv[2]) {
-    bot_token = process.argv[2];
+if (process.argv[3]) {
+    bot_token = process.argv[3];
 }
 
 client.login(bot_token);
