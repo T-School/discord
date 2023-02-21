@@ -1,3 +1,25 @@
+name: voice_notification
+on:
+  schedule:
+    # 毎日0時、6時、12時、18時に定期実行
+    - cron: "* 0,6,12,18 * * *"
+  # 手動での実行
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Create dot env file
+        run: |
+          touch .env
+          echo "TOKEN=${{ secrets.TOKEN }}" >> .env
+          echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
+          echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
+      - run: npm install
+      - name: Start Watching Voice Channel
+        run: node src/voiceMemberNotification.js
 name: send_message
 on:
   # 手動での実行
