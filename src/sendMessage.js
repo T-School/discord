@@ -20,6 +20,9 @@ client.once("ready", () => {
     // メッセージ送信を行うチャンネル取得
     const textRoom = client.channels.cache.get(env.MESSAGE_CHANNEL_ID);
     sendMessage(textRoom, process.argv[2] ?? env.SEND_MESSAGE);
+    setTimeout(() => {
+        process.exit();
+    }, 0);
     return;
 });
 
