@@ -18,6 +18,14 @@ const client = new Client({
 
 client.on("ready", () => {
     // 情報取得系のテストはここでログ出力して実施
+
+    // タイムアウト時間が設定されていればセット
+    const timeoutSeconds = env.TIMEOUT_SECONDS;
+    if (timeoutSeconds && !isNaN(timeoutSeconds)) {
+        setTimeout(() => {
+            process.exit();
+        }, timeoutSeconds * 1000);
+    }
 });
 
 // ボイスチャンネルへのアクションを検知して発火

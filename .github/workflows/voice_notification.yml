@@ -5,6 +5,7 @@ on:
     - cron: "* 3,9,15,21 * * *"
   # 手動での実行
   workflow_dispatch:
+# 稼働中の同一ワークフローがあれば停止させる
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
