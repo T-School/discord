@@ -54,3 +54,18 @@ GENERATED URLをブラウザで開き、開いた画面でBotを追加したいD
 ## デプロイ
 
 [【GitHub Actions】.envファイルを使用する](https://zenn.dev/big_tanukiudon/articles/fc1a2ff562ce3d)
+
+### 設定値の更新
+
+[Settings](https://github.com/T-School/discord/settings) > [Actions secrets and variables](https://github.com/T-School/discord/settings/secrets/actions)にて、**Repository secrets** を新しい設定値で更新する。
+
+#### 設定値の一覧
+
+| key                | value                                 |
+| ------------------ | ------------------------------------- |
+| MESSAGE_CHANNEL_ID | Botがメッセージを通知するチャンネルID |
+| TIMEOUT_SECOUNDS   | 監視を継続させる最大時間(秒)          |
+| TOKEN              | 稼働させるBotのトークン               |
+| VOICE_CHANNEL_ID   | 監視対象のボイスチャンネルID          |
+
+チャンネルIDの調べ方は「[ユーザー/サーバー/メッセージIDはどこで見つけられる？](https://support.discord.com/hc/ja/articles/206346498)」
