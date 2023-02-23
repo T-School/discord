@@ -1,8 +1,8 @@
 name: voice_notification
 on:
   schedule:
-    # 毎日0時、6時、12時、18時に定期実行
-    - cron: '* 0,6,12,18 * * *'
+    # 毎日0時、6時、12時、18時(JST)に定期実行（表記はUTC〉
+    - cron: "* 3,9,15,21 * * *"
   # 手動での実行
   workflow_dispatch:
 jobs:

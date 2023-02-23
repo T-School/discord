@@ -7,6 +7,9 @@ on:
         type: string
         required: true
         description: "通知したいメッセージを入力してください"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,5 +23,5 @@ jobs:
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - run: npm install
       - name: Send Messege
-        run: node src/sendMessage.js ${{ github.event.inputs.message }}
+        run: node src/sendMessage.js "${{ github.event.inputs.message }}"
         timeout-minutes: 1
