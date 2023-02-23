@@ -23,7 +23,7 @@ jobs:
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - run: npm install
       - name: Send Messege
+        run: node src/sendMessage.js "${INPUT_TEXT}"
         env:
           INPUT_TEXT: ${{ github.event.inputs.message }}
-        run: node src/sendMessage.js "${INPUT_TEXT}"
         timeout-minutes: 1
