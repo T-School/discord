@@ -1,10 +1,13 @@
 name: voice_notification
 on:
-  schedule:
-    # 毎日6時間ごとに定期実行
-    - cron: '* */6 * * *'
   # 手動での実行
   workflow_dispatch:
+  # 毎日0時、6時、12時、18時に定期実行（表記はUTC）
+  schedule:
+    - cron: '* 3 * * *'
+    - cron: '* 9 * * *'
+    - cron: '* 15 * * *'
+    - cron: '* 21 * * *'
 # 稼働中の同一ワークフローがあれば停止させる
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
