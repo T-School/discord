@@ -25,3 +25,7 @@ jobs:
       - run: npm install
       - name: Start Watching Voice Channel
         run: node src/voiceMemberNotification.js
+      - name: Success Exit even if cancelled
+        if: ${{ cancelled() }}
+        run: exit 0
+        
