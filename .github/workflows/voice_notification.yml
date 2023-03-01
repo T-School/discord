@@ -24,6 +24,7 @@ jobs:
           echo "TIMEOUT_SECONDS=${{ secrets.TIMEOUT_SECONDS }}" >> .env
       - run: npm install
       - name: Start Watching Voice Channel
+        continue-on-error: true
         run: node src/voiceMemberNotification.js
       - name: Success Exit even if cancelled
         if: cancelled()
