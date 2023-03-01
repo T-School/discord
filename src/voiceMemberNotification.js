@@ -28,6 +28,12 @@ client.on("ready", () => {
     }
 });
 
+// プロセスがkillされても正常終了
+process.on("SIGINT", () => {
+    console.log("SIGINT");
+    process.exit();
+});
+
 // ボイスチャンネルへのアクションを検知して発火
 client.on("voiceStateUpdate", (oldState, newState) => {
     // メッセージ送信を行うチャンネル取得

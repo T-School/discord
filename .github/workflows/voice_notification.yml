@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   # 毎日0:00、6:00、12:00、18:00に定期実行（表記はUTC）
   schedule:
-    - cron: '0 3,9,15,21 * * *'
+    - cron: "0 3,9,15,21 * * *"
 # 稼働中の同一ワークフローがあれば停止させる
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,9 +24,8 @@ jobs:
           echo "TIMEOUT_SECONDS=${{ secrets.TIMEOUT_SECONDS }}" >> .env
       - run: npm install
       - name: Start Watching Voice Channel
-        continue-on-error: true
+        # continue-on-error: true # エラーが起きても処理を続行
         run: node src/voiceMemberNotification.js
       - name: Success Exit even if cancelled
         if: cancelled()
         run: exit 0
-        
