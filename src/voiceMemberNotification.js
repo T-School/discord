@@ -29,8 +29,8 @@ client.on("ready", () => {
 });
 
 // プロセスがkillされても正常終了
-process.on("SIGINT", () => {
-    console.log("SIGINT");
+process.on("SIGTERM", () => {
+    console.log("SIGTERM");
     process.exit();
 });
 
