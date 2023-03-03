@@ -30,6 +30,6 @@ jobs:
         if: cancelled()
         run: exit 0
       - name: Error Messege
-        if: error()
+        if: failure()
         run: node src/sendMessage.js "サーバ側でエラー発生。Botを停止します😴\n最大で6時間以内に自動で再起動します💡"
         timeout-minutes: 1
