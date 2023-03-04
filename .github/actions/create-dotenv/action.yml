@@ -3,7 +3,8 @@ description: "Create .env file from Secrets & Variables"
 runs:
   using: "compisite"
   steps:
-    - run: |
+    - name: Create dot env file
+      run: |
         touch .env
         echo "TOKEN=${{ secrets.TOKEN }}" >> .env
         echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
