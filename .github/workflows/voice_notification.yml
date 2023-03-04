@@ -11,7 +11,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  build:
+  voice-notification:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
