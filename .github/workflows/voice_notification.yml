@@ -21,15 +21,14 @@ jobs:
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
           echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
-          echo "TIMEOUT_SECONDS=${{ secrets.TIMEOUT_SECONDS }}" >> .env
+          echo "TIMEOUT_SECONDS=${{ vars.TIMEOUT_SECONDS }}" >> .env
       - run: npm install
       - name: Start Watching Voice Channel
-        # continue-on-error: true # エラーが起きても処理を続行
         run: node src/voiceMemberNotification.js
       - name: Success Exit even if cancelled
         if: cancelled()
         run: exit 0
       - name: Error Messege
         if: failure()
-        run: node src/sendMessage.js "サーバ側でエラー発生。Botを停止します😴\n最大で6時間以内に自動で再起動します💡"
+        run: node src/sendMessage.js "${{ vars.ERROR_MESSAGE }}"
         timeout-minutes: 1
