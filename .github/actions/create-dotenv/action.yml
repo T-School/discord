@@ -4,6 +4,7 @@ runs:
   using: "compisite"
   steps:
     - name: Create dot env file
+      shell: bash
       run: |
         touch .env
         echo "TOKEN=${{ secrets.TOKEN }}" >> .env
