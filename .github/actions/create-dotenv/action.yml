@@ -1,0 +1,11 @@
+name: "create-dotenv"
+description: "Create .env file from Secrets & Variables"
+runs:
+  using: "compisite"
+  steps:
+    - run: |
+      touch .env
+      echo "TOKEN=${{ secrets.TOKEN }}" >> .env
+      echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
+      echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
+      echo "TIMEOUT_SECONDS=${{ vars.TIMEOUT_SECONDS }}" >> .env
