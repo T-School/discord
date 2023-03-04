@@ -38,6 +38,7 @@ jobs:
   case-failure:
     name: Error Messege
     runs-on: ubuntu-latest
+    needs: voice-notification
     if: failure()
     timeout-minutes: 1
     steps:
