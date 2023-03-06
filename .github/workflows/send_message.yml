@@ -19,9 +19,12 @@ jobs:
       - name: Create dot env file
         run: |
           touch .env
-          echo "ERROR_MESSAGE=${{ vars.ERROR_MESSAGE }}" >> .env
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
+      - name: Define Error Message
+          echo "ERROR_MESSAGE<<$EOF" >> $GITHUB_ENV
+          ${{ vars.ERROR_MESSAGE }} >> $GITHUB_ENV
+          echo "$EOF" >> $GITHUB_ENV
       - run: npm install
       - name: Send Messege
        # run: node src/sendMessage.js "${INPUT_TEXT}"
