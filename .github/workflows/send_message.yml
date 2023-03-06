@@ -19,11 +19,13 @@ jobs:
       - name: Create dot env file
         run: |
           touch .env
+          echo "ERROR_MESSAGE=${{ vars.ERROR_MESSAGE }}" >> .env
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - run: npm install
       - name: Send Messege
-        run: node src/sendMessage.js "${INPUT_TEXT}"
+       # run: node src/sendMessage.js "${INPUT_TEXT}"
+        run: echo "${{ env.ERROR_MESSAGE }}"
         env:
           INPUT_TEXT: ${{ github.event.inputs.message }}
         timeout-minutes: 1
