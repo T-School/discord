@@ -21,15 +21,10 @@ jobs:
           touch .env
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
-      - name: Define Error Message
-        run: |
-          error_message="${{ vars.ERROR_MESSAGE }}"
-          error_message="${error_message//$'\n'/'%0A'}"
-          echo $error_message
       - run: npm install
       - name: Send Messege
-       # run: node src/sendMessage.js "${INPUT_TEXT}"
-        run: echo $error_message
-        env:
-          INPUT_TEXT: ${{ github.event.inputs.message }}
+        run: |
+          error_message="${{ github.event.inputs.message }}"  # 入力テキストを取得
+          error_message="${error_message//$'\n'/'%0A'}" # 改行を置換
+          node src/sendMessage.js $error_message
         timeout-minutes: 1
