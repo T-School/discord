@@ -25,6 +25,7 @@ jobs:
         run: |
           error_message="${{ vars.ERROR_MESSAGE }}"
           error_message="${error_message//$'\n'/'%0A'}"
+          echo $error_message
       - run: npm install
       - name: Send Messege
        # run: node src/sendMessage.js "${INPUT_TEXT}"
