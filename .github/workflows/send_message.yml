@@ -23,13 +23,12 @@ jobs:
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - name: Define Error Message
         run: |
-          echo "ERROR_MESSAGE<<$EOF" >> $GITHUB_ENV
-          ${{ vars.ERROR_MESSAGE }} >> $GITHUB_ENV
-          echo "$EOF" >> $GITHUB_ENV
+          error_message="${{ vars.ERROR_MESSAGE }}"
+          error_message="${error_message//$'\n'/'%0A'}"
       - run: npm install
       - name: Send Messege
        # run: node src/sendMessage.js "${INPUT_TEXT}"
-        run: echo "${{ env.ERROR_MESSAGE }}"
+        run: echo $error_message
         env:
           INPUT_TEXT: ${{ github.event.inputs.message }}
         timeout-minutes: 1
