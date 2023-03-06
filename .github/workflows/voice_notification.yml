@@ -43,3 +43,7 @@ jobs:
     timeout-minutes: 1
     steps:
       - run: node src/sendMessage.js "${{ vars.ERROR_MESSAGE }}"
+      - run: |
+          error_message="${{ vars.ERROR_MESSAGE }}"  # 変数
+          error_message="${error_message//$'\n'/'%0A'}" # 改行を置換
+          node src/sendMessage.js $error_message
