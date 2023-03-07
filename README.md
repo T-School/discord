@@ -91,4 +91,3 @@ GENERATED URLをブラウザで開き、開いた画面でBotを追加したいD
 Botに任意のメッセージを送らせるworkflow。
 [Actions](https://github.com/T-School/discord/actions/workflows/send_message.yml) > `Run workflow`を開き、送信したいメッセージを入力して `Run workflow`を押す。
 ![send_message1](img/send_message1.png)
-
