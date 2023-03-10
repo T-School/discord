@@ -84,6 +84,8 @@ GENERATED URLをブラウザで開き、開いた画面でBotを追加したいD
 
 ### workflowを操作する
 
+workflowの実行状態は[Actionsタブ](https://github.com/T-School/discord/actions)で確認できる。
+
 #### 手動で起動する
 
 1. [Actionsタブ](https://github.com/T-School/discord/actions) > [discord_voice_notification](https://github.com/T-School/discord/actions/workflows/main.yml)を選択し、 **Run workflow** を開く。
