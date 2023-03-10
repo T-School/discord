@@ -1,7 +1,7 @@
 # discord
 
 Discord関連のソース
-<!--  -->
+
 ## voice_notification
 
 ボイスチャンネルへの入退室をトリガーとしてテキストチャンネルへ通知するBOT
@@ -82,7 +82,22 @@ GENERATED URLをブラウザで開き、開いた画面でBotを追加したいD
 | ERROR_MESSAGE        | workflowがエラーを起こした際に、チャンネルに投稿するエラーメッセージ。                                                              |
 | TIMEOUT_SECONDS      | `voice_notification`の実行を停止させる時間(秒)。21,580秒では「6時間を超える実行」のためエラーが発生するのでそれ以下の秒数を入れる。 |
 
-### 定期実行を停止させるには
+### workflowを操作する
+
+#### 手動で起動する
+
+1. [Actionsタブ](https://github.com/T-School/discord/actions) > [discord_voice_notification](https://github.com/T-School/discord/actions/workflows/main.yml)を選択し、 **Run workflow** を開く。
+2. `Branch: main`が選択された状態で  **Run workflow** を押す。![voice_notification01.png](/img/voice_notification01.png)
+3. 実行が開始されるので、同じ画面でしばらく待って、　**workflowでエラーが出ないこと** と **BotがDiscordサーバーの「オンライン」状態となる** ことを確認する。
+    - このような表示になっていれば正常に稼働中となっている。 ![voice_notification02.png](/img/voice_notification02.png)
+
+#### 手動で停止させる
+
+実行中のworkflowのメニューを開き、 **Cancel run** を押す。しばらく待つと停止される。  
+workflowの停止後、数分待つとBotも「オフライン」状態になる。
+![voice_notification03.png](/img/voice_notification03.png)
+
+#### 定期実行を停止させる
 
 `voice_notification.yml`の `schedule:` と `- cron:`の2行をコメントアウトして `main`ブランチにpushする。
 
