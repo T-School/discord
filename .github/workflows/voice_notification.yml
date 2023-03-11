@@ -11,6 +11,17 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  debug-output:
+    name: Successfully exit even if cancelled
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - run: |
+          node src/sendMessage.js "$ERROR_MESSAGE"
+        env:
+          ERROR_MESSAGE: |
+            ${{ vars.ERROR_MESSAGE }}
+
   voice-notification:
     runs-on: ubuntu-latest
     steps:
@@ -26,17 +37,6 @@ jobs:
       - run: npm install
       - name: Start Watching Voice Channel
         run: node src/voiceMemberNotification.js
-
-  case-cancelled:
-    name: Successfully exit even if cancelled
-    runs-on: ubuntu-latest
-    needs: voice-notification
-    if: cancelled()
-    timeout-minutes: 1
-    steps:
-      - run: |
-          error_message="${${{ vars.ERROR_MESSAGE }}//$'\n'/'%0A'}"  # 変数
-          node src/sendMessage.js $error_message
 
   case-failure:
     name: Error Messege
