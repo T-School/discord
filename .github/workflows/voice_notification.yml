@@ -12,14 +12,14 @@ concurrency:
   cancel-in-progress: true
 jobs:
   debug-output:
-    name: Successfully exit even if cancelled
+    name: Debug Message
     runs-on: ubuntu-latest
     timeout-minutes: 1
     steps:
       - run: |
-          node src/sendMessage.js "$ERROR_MESSAGE"
+          node src/sendMessage.js
         env:
-          ERROR_MESSAGE: |
+          SEND_MESSAGE: |
             ${{ vars.ERROR_MESSAGE }}
 
   voice-notification:
