@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 1
     steps:
       - run: |
-          error_message="${{ vars.ERROR_MESSAGE//$'\n'/'%0A' }}"  # 変数
+          error_message="${${{ vars.ERROR_MESSAGE }}//$'\n'/'%0A'}"  # 変数
           node src/sendMessage.js $error_message
 
   case-failure:
