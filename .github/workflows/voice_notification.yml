@@ -16,10 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 1
     steps:
+      - name: Create dot env file
+        run: |
+          touch .env
+          echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
+          echo "TIMEOUT_SECONDS=${{ vars.TIMEOUT_SECONDS }}" >> .env
+          echo "TOKEN=${{ secrets.TOKEN }}" >> .env
+          echo "SEND_MESSAGE=${{ vars.ERROR_MESSAGE }}" >> .env
+          echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
       - run: |
           node src/sendMessage.js
-        env:
-          SEND_MESSAGE: ${{ vars.ERROR_MESSAGE }}
 
   voice-notification:
     runs-on: ubuntu-latest
