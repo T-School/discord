@@ -19,8 +19,7 @@ jobs:
       - run: |
           node src/sendMessage.js
         env:
-          SEND_MESSAGE: |
-            ${{ vars.ERROR_MESSAGE }}
+          SEND_MESSAGE: ${{ vars.ERROR_MESSAGE }}
 
   voice-notification:
     runs-on: ubuntu-latest
