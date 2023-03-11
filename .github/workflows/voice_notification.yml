@@ -22,7 +22,7 @@ jobs:
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
           echo "TIMEOUT_SECONDS=${{ vars.TIMEOUT_SECONDS }}" >> .env
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
-          echo "SEND_MESSAGE=${{ vars.ERROR_MESSAGE }}" >> .env
+          echo "SEND_MESSAGE=\"${{ vars.ERROR_MESSAGE }}\"" >> .env
           echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
       - run: |
           node src/sendMessage.js
