@@ -32,8 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: voice-notification
     if: cancelled()
+    timeout-minutes: 1
     steps:
-      - run: exit 0
+      - run: node src/sendMessage.js "${{ vars.ERROR_MESSAGE }}"
+      - run: |
+          error_message="${{ vars.ERROR_MESSAGE }}"  # 変数
+          error_message="${error_message//$'\n'/'%0A'}" # 改行を置換
+          node src/sendMessage.js $error_message
 
   case-failure:
     name: Error Messege
