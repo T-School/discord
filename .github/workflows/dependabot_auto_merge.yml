@@ -1,4 +1,5 @@
 # https://dev.classmethod.jp/articles/github-dependabot-auto-merge/
+name: dependabot_auto_merge
 on: pull_request_target
 
 permissions:
