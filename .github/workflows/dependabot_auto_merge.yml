@@ -1,24 +1,37 @@
-# https://docs.github.com/ja/code-security/dependabot/working-with-dependabot/automating-dependabot-with-github-actions#enable-auto-merge-on-a-pull-request
-name: dependabot_auto_merge
-on: pull_request
+# https://blog.smartbank.co.jp/entry/2023/02/16/dependabot-auto-merge-with-github-app
+name: Dependabot automation
 
-permissions:
-  pull-requests: write
-  contents: write
+on:
+  pull_request:
+    types:
+      - opened
 
 jobs:
-  dependabot:
+  dependabot-automation:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
+    timeout-minutes: 13
     steps:
+      - name: Generate token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.AUTO_MERGE_BOT_APP_ID }}
+          private_key: ${{ secrets.AUTO_MERGE_BOT_PRIVATE_KEY }}
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1
+        uses: dependabot/fetch-metadata@v1.3.6
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Enable auto-merge for Dependabot PRs
-        if: ${{contains(steps.metadata.outputs.dependency-names, 'my-dependency') && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
-        run: gh pr merge --auto --merge "$PR_URL"
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
+      - name: Approve & enable auto-merge for Dependabot PR
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr edit "$PR_URL" -t "(auto merged) $PR_TITLE"
+          gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
