@@ -9,6 +9,8 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+      time: "21:30"
+      timezone: "Asia/Tokyo"
     labels:
       - "アップデート対応"
       - "dependabot"
