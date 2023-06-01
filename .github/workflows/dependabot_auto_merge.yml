@@ -18,6 +18,8 @@ jobs:
         with:
           app_id: ${{ secrets.AUTO_MERGE_BOT_APP_ID }}
           private_key: ${{ secrets.AUTO_MERGE_BOT_PRIVATE_KEY }}
+        env:
+          OPENSSL_CONF: /dev/null
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.3.6
