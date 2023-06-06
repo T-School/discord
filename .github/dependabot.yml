@@ -8,7 +8,9 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
+      time: "21:30"
+      timezone: "Asia/Tokyo"
     labels:
       - "アップデート対応"
       - "dependabot"
