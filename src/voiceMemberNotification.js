@@ -49,7 +49,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
             // チャンネルに参加中のメンバー取得
             let members = [];
             voiceChannel.members.forEach(m => {
-                members.push(m.user.username);
+                members.push(m.displayName);
             });
 
             // メッセージ生成/送信
