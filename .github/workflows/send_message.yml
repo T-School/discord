@@ -22,6 +22,7 @@ jobs:
           echo "TOKEN=${{ secrets.TOKEN }}" >> .env
           echo "MESSAGE_CHANNEL_ID=${{ secrets.MESSAGE_CHANNEL_ID }}" >> .env
       - run: npm install
+      - run: npm audit fix
       - name: Send Messege
         run: |
           message_text="${{ github.event.inputs.message }}"  # 入力テキストを取得

@@ -25,6 +25,7 @@ jobs:
           echo "SEND_MESSAGE=\"${{ vars.ERROR_MESSAGE }}\"" >> .env
           echo "VOICE_CHANNEL_ID=${{ secrets.VOICE_CHANNEL_ID }}" >> .env
       - run: npm install
+      - run: npm audit fix
       - name: Start Watching Voice Channel
         run: node src/voiceMemberNotification.js
       - name: Send Error Message
