@@ -20,7 +20,7 @@ jobs:
           private_key: ${{ secrets.AUTO_MERGE_BOT_PRIVATE_KEY }}
       - name: Dependabot metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.3.6
+        uses: dependabot/fetch-metadata
         with:
           GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
       - name: Approve & enable auto-merge for Dependabot PR
