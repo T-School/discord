@@ -25,6 +25,6 @@ jobs:
       - name: Send Messege
         run: |
           message_text="${{ github.event.inputs.message }}"  # 入力テキストを取得
-          message_text="${message_text//$'\n'/'%0A'}" # 改行を置換
+          # message_text="${message_text//$'\n'/'%0A'}" # 改行を置換
           node src/sendMessage.js $message_text
         timeout-minutes: 1
